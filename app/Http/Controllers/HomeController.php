@@ -32,6 +32,7 @@ class HomeController extends Controller
         }
     }
 
+    // Function ini kita gunakan untuk pencarian data product, apabila data ditemukan maka akan dikirimkan dalam bentuk json.
     public function search(Request $request)
     {
         $search = $request->term;
@@ -40,7 +41,7 @@ class HomeController extends Controller
         ->get();
         $result=array();
         foreach ($data as $key => $value) {
-            $result[]=['price'=>$value->price,'id','value'=>$value->name];
+            $result[]=['price'=>$value->price,'id'=>$value->id,'value'=>$value->name];
         }
         return response()->json($result);
     }

@@ -10,7 +10,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
-          <a href="#" class="d-block"></a>
+          <a href="#" class="d-block">{{ Auth::user()->name }}</a>
         </div>
       </div>
 
@@ -28,6 +28,19 @@
               </p>
             </a>
           </li>
+          @if (Auth::user()->hasRole('kasir'))
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>
+                Sign Out
+              </p>
+            </a>
+          <form id="logout-form" style="display:none;" action="{{route('logout')}}" method="post">
+          @csrf
+          </form>
+          </li>
+          @endif
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

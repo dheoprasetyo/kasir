@@ -30,7 +30,7 @@ class OrderController extends Controller
         if(!$latest){
             $invoice = '0001';
         } else {
-            $invoice = sprintf('$04d', $latest->invoice+1);
+            $invoice = sprintf('%04d', $latest->invoice+1);
         }
 
         $cart_order = Cart::all();
@@ -55,7 +55,7 @@ class OrderController extends Controller
         }
 
         Cart::query()->truncate();
-        return rediredt()->route('detailorder');
+        return redirect()->route('detailorder');
 
     }
 
@@ -63,13 +63,13 @@ class OrderController extends Controller
     public function detailorder()
     {
         $lastOrder = Order::latest()->first();
-        return view('order.detail',compact('lastOrder'));
+        return view('detail',compact('lastOrder'));
     }
 
     // Fungsi ini akan digunakan untuk mencetak nota
     public function receipt(Order $order)
     {
         $profile = Profile::first();
-        return view('order.receipt', compact('order','profile'));
+        return view('receipt', compact('order','profile'));
     }
 }

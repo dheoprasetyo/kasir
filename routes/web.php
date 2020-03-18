@@ -11,8 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('template.default');
+Route::get('/', 'HomeController@index');
 // });
 
 Auth::routes();
@@ -21,7 +20,7 @@ Route::get('/home', 'HomeController@index')->name('dashboard');
 Route::group(['middleware' => 'role:kasir','auth'], function () {
     Route::get('search','HomeController@search')->name('search');
     Route::post('add-product','CartController@addProduct')->name('addProduct');
-    Route::delete('cart/{cart}/delte','CartOrderController@destroy')->name('cart_order.destroy');
+    Route::delete('cart/{cart}/delete','CartController@destroy')->name('cart_order.destroy');
     Route::post('process','OrderController@process')->name('process');
     Route::get('detailOrder','OrderController@detailOrder')->name('detailorder');
     Route::get('order/{order}/receipt','OrderController@receipt')->name('receipt');

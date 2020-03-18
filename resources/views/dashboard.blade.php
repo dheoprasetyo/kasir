@@ -1,6 +1,8 @@
 @extends('template.default')
 @section('breadcrumb')
-    
+@if (Auth::user()->hasRole('kasir'))
+{{ Breadcrumbs::render('transaction') }}
+@endif
 @endsection
 @section('content')
 @include('sweetalert::alert')
@@ -165,4 +167,36 @@
 </div>
     
 @endif
+
+@push('styles')
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    
+@endpush
+@push('scripts')
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+    $('#product').autocomplete({
+        source: "{{route('search') }}",
+        minlength : 1,
+        autofocus :true,
+        select:function(e,ui){
+            $('#menu').val(ui.item.value);
+            $('#price').val(ui.item.price);
+            $('#id').val(ui.item.id);
+        }
+    });
+</script>
+<script>
+    function sum() {
+        var pay = document.getElementById('pay').value;
+        var total = document.getElementById('total').value;
+        var result = parseInt(pay) - parseInt(total);
+        if (!isNaN(result)){
+            document.getElementById('back').value = result;
+        }
+    }
+</script>
+@endpush
 @endsection
