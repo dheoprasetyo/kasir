@@ -40,6 +40,48 @@
           @csrf
           </form>
           </li>
+          @else
+          <li class="nav-item">
+            <a href="{{ route('category.index') }}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>Category</p>
+          </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('product.category')}}" class="nav-link">
+            <i class="nav-icon fas fa-th"></i>
+            <p>Product</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('order.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-money-bill-alt"></i>
+            <p>Penjualan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('report.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-file-alt"></i>
+            <p>Laporan</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('profile.index')}}" class="nav-link">
+            <i class="nav-icon fas fa-cogs"></i>
+            <p>Setting</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+              <i class="nav-icon fas fa-power-off"></i>
+              <p>
+                Sign Out
+              </p>
+            </a>
+          <form id="logout-form" style="display:none;" action="{{route('logout')}}" method="post">
+          @csrf
+          </form>
+          </li>
           @endif
         </ul>
       </nav>

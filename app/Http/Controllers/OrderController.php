@@ -72,4 +72,17 @@ class OrderController extends Controller
         $profile = Profile::first();
         return view('receipt', compact('order','profile'));
     }
+
+    public function index()
+    {
+        $orders = Order::orderBy('id','desc')->get();
+        $items = new Orderdetail;
+        return view('order.index',compact('orders','items'));
+    }
+
+    public function show(Order $order)
+    {
+        $profile = Profile::first();
+        return view('order.show', compact('order','profile'));
+    }
 }

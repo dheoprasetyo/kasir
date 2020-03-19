@@ -17,4 +17,9 @@ class Order extends Model
     {
         return $this->hasMany(orderdetail::class);
     }
+
+    public function income($date)
+    {
+        return $this->where('created_at', 'LIKE', "$date%")->sum('total');
+    }
 }

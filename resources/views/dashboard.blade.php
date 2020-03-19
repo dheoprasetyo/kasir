@@ -165,8 +165,101 @@
         </div>
     </div>
 </div>
-    
+@else
+<div class="row">
+    <div class="col-lg-3 col-6">
+      <div class="small-box bg-info">
+        <div class="inner">
+          <h3>Rp. {{number_format($income_today)}}</h3>
+
+          <p>Pendapatan Hari Ini</p>
+        </div>
+        <div class="icon">
+            <i class="fas fa-hand-holding-usd"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 col-6">
+        <div class="small-box bg-success">
+          <div class="inner">
+            <h3>Rp. {{number_format($income_yesterday)}}</h3>
+
+            <p>Pendapatan Kemarin</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-dollar-sign"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-warning">
+          <div class="inner">
+            <h3>{{ $categories->count()}}</h3>
+
+            <p>Jumlah Kategori</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-list"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-6">
+        <div class="small-box bg-danger">
+          <div class="inner">
+            <h3>{{$product}}</h3>
+
+            <p>Jumlah Product</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-list-ol"></i>
+          </div>
+        </div>
+      </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-chart-pie mr-1"></i>
+                    Penjualan Bulan Ini</h3>
+            </div>
+            <div class="card-body">
+                <div class="app">
+                    <center>
+                      {!! $chart_daily->container() !!}
+        
+                    </center>
+                </div>
+                {!! $chart_daily->script() !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title"><i class="fas fa-chart-pie mr-1"></i>
+                    Penjualan Per Bulan</h3>
+            </div>
+            <div class="card-body">
+                <div class="app">
+                    <center>
+                      {!! $chart_monthly->container() !!}
+        
+                    </center>
+                </div>
+                {!! $chart_monthly->script() !!}
+            </div>
+        </div>
+    </div>
+</div>
 @endif
+
 
 @push('styles')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -198,5 +291,6 @@
         }
     }
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js" charset="utf-8"></script>
 @endpush
 @endsection
